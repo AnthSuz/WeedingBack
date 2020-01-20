@@ -8,7 +8,11 @@ router.post("/createguest", async (req, res) => {
   try {
     const newGuest = new Guest({
       name: req.fields.name,
-      username: req.fields.username
+      firstname: req.fields.firstname,
+      presence: req.fields.presence,
+      numberPhone: req.fields.numberPhone,
+      numberAdult: req.fields.numberAdult,
+      numberChildren: req.fields.numberChildren
     });
     await newGuest.save();
     res.json("Guest Created");
@@ -17,6 +21,14 @@ router.post("/createguest", async (req, res) => {
   }
 });
 // READ
+router.get("/readlistguest", async (req, res) => {
+  try {
+    const readGuest = await Guest.find();
+    res.json(readGuest);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 // UPDATE
 
