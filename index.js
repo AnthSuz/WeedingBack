@@ -14,10 +14,14 @@ mongoose.connect("mongodb://localhost/weeding-guest", {
 
 // MODEL
 require("./models/models_guest");
+require("./models/models_children");
 
 // ROADS
 const roadsGuest = require("./roads/roads_guest");
 app.use(roadsGuest);
+
+const roadsChildren = require("./roads/roads_children");
+app.use(roadsChildren);
 // STARTED SERVER
 
 app.listen(3010, () => {
