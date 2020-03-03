@@ -30,5 +30,19 @@ router.get("/readlistchildren", async (req, res) => {
 // UPDATE
 
 // DELETE
+router.post("/children/delete/:id", async (req, res) => {
+  console.log("req", req.params.id);
+  try {
+    const deleteChildren = await Children.findById(req.params.id);
+    if (deleteChildren) {
+      await deleteChildren.remove();
+      res.json({ message: "Enfant Supprimé" });
+    } else {
+      res.status(401).json({ message: "Enfant non trouvé" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 module.exports = router;
