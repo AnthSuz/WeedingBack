@@ -11,7 +11,7 @@ router.post("/createchildren", async (req, res) => {
       name: req.fields.name
     });
     await newChildren.save();
-    res.json("Children Created");
+    res.json(newChildren);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -36,6 +36,7 @@ router.post("/children/delete/:id", async (req, res) => {
     const deleteChildren = await Children.findById(req.params.id);
     if (deleteChildren) {
       await deleteChildren.remove();
+      console.log("here");
       res.json({ message: "Enfant Supprimé" });
     } else {
       res.status(401).json({ message: "Enfant non trouvé" });

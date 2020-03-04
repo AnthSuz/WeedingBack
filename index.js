@@ -15,6 +15,7 @@ mongoose.connect("mongodb://localhost/weeding-guest", {
 // MODEL
 require("./models/models_guest");
 require("./models/models_children");
+require("./models/models_user");
 
 // ROADS
 const roadsGuest = require("./roads/roads_guest");
@@ -22,6 +23,12 @@ app.use(roadsGuest);
 
 const roadsChildren = require("./roads/roads_children");
 app.use(roadsChildren);
+
+const roadsSignUp = require("./roads/roads_signup");
+app.use(roadsSignUp);
+
+const roadsLogin = require("./roads/roads_login");
+app.use(roadsLogin);
 // STARTED SERVER
 
 app.listen(3010, () => {
