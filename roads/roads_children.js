@@ -4,7 +4,7 @@ const router = express.Router();
 const Children = require("../models/models_children");
 
 // CREATE
-router.post("/createchildren", async (req, res) => {
+router.post("/children/create", async (req, res) => {
   try {
     const newChildren = new Children({
       firstname: req.fields.firstname,
@@ -18,7 +18,7 @@ router.post("/createchildren", async (req, res) => {
 });
 
 // READ
-router.get("/readlistchildren", async (req, res) => {
+router.get("/children/read", async (req, res) => {
   try {
     const readChildren = await Children.find();
     res.json(readChildren);

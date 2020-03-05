@@ -4,11 +4,11 @@ const router = express.Router();
 const Guest = require("../models/models_guest");
 
 // CREATE
-router.post("/createguest", async (req, res) => {
+router.post("/guest/create", async (req, res) => {
   try {
     const newGuest = new Guest({
-      name: req.fields.name,
-      firstname: req.fields.firstname,
+      name: req.fields.name.toUpperCase(),
+      firstname: req.fields.firstname.toUpperCase(),
       presence: req.fields.presence,
       numberPhone: req.fields.numberPhone,
       numberAdult: req.fields.numberAdult,
@@ -21,7 +21,7 @@ router.post("/createguest", async (req, res) => {
   }
 });
 // READ
-router.get("/readlistguest", async (req, res) => {
+router.get("/guest/read", async (req, res) => {
   try {
     const readGuest = await Guest.find();
     res.json(readGuest);
@@ -31,7 +31,7 @@ router.get("/readlistguest", async (req, res) => {
 });
 
 // READ BY ID
-router.get("/readlistguest/:id", async (req, res) => {
+router.get("/guest/read/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const readGuestById = await Guest.findById(id);
@@ -41,19 +41,8 @@ router.get("/readlistguest/:id", async (req, res) => {
   }
 });
 
-// TEST READ BY NAME
-// router.get("/readlistguest&name=:name", async (req, res) => {
-//   const { name } = req.params;
-//   try {
-//     const readGuestByName = await Guest.findOne(name);
-//     res.json(readGuestByName);
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//   }
-// });
-
 // UPDATE
-router.post("/listguest/update", async (req, res) => {
+router.post("/guest/update", async (req, res) => {
   try {
     console.log("req.fields", req.fields);
     let id = req.fields._id;
