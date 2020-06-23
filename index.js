@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const formidableMiddleware = require("express-formidable");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 app.use(formidableMiddleware());
@@ -9,7 +10,7 @@ app.use(cors());
 
 mongoose.connect("mongodb://localhost/weeding-guest", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 // MODEL
@@ -29,6 +30,9 @@ app.use(roadsSignUp);
 
 const roadsLogin = require("./roads/roads_login");
 app.use(roadsLogin);
+
+const roadsOnoff = require("./roads/roads_onoff");
+app.use(roadsOnoff);
 // STARTED SERVER
 
 app.listen(3010, () => {
