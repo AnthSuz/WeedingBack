@@ -35,6 +35,6 @@ const roadsOnoff = require("./roads/roads_onoff");
 app.use(roadsOnoff);
 // STARTED SERVER
 
-app.listen(3010, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started");
 });
