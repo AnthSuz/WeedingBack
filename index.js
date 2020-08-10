@@ -8,7 +8,7 @@ const app = express();
 app.use(formidableMiddleware());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost/weeding-guest", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
